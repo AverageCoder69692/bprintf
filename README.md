@@ -6,7 +6,6 @@ Built entirely in C, `bprintf` is designed for low-level systems where `printf()
 
 NOTE: "This is a custom bare-metal implementation of bprintf, not derived from any existing code"
 
-
 ---
 
 ## ✨ Features
@@ -23,6 +22,14 @@ NOTE: "This is a custom bare-metal implementation of bprintf, not derived from a
 - ✅ Graceful fallback for unknown specifiers (e.g., `%z` → prints `%z`)
 - ✅ Manual variadic argument parsing (`va_list`)
 - ✅ No dependencies, no libc, no OS
+
+---
+
+## 📦 Size
+
+The compiled `bprintf` implementation typically occupies **~0.5 to 0.6 KB** of machine code when targeting a 32-bit freestanding x86 environment with no optimization. With `-Os` or `-O2`, it may shrink to **~0.4 KB**.
+
+This makes it ideal for bootloaders, microkernels, and minimal OS projects where every byte counts.
 
 ---
 
