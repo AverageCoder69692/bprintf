@@ -4,6 +4,9 @@
 
 Built entirely in C, `bprintf` is designed for low-level systems where `printf()` isn't available. It uses manual stack walking (`va_list`) and custom base conversion routines to render output directly to screen.
 
+NOTE: "This is a custom bare-metal implementation of bprintf, not derived from any existing code"
+
+
 ---
 
 ## ✨ Features
