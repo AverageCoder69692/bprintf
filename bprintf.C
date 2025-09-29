@@ -37,9 +37,11 @@ void print_hex(unsigned int val) {
   putchar('0');
   putchar('x');
   char hex[] = "0123456789ABCDEF";
-  char buf[8];
+  int hexbuf_size = sizeof(val) * 2;
+  char buf[hexbuf_size];
   int i = 0;
   do {
+    if (i >= hexbuf_size) break;
     buf[i++] = hex[val & 0xF];
     val >>= 4;
   } while (val);
@@ -49,9 +51,11 @@ void print_hex(unsigned int val) {
 void print_bin(unsigned int val) {
   putchar('0');
   putchar('b');
-  char buf[32];
+  int bits = sizeof(val) * 8;
+  char buf[bits];
   int i = 0;
   do {
+    if (i >= bits) break;
     buf[i++] = '0' + (val & 1);
     val >>= 1;
   } while (val);
@@ -59,7 +63,14 @@ void print_bin(unsigned int val) {
 }
 
 void print_uint(unsigned int val) {
-  char buf[10];
+  int digits = 0;
+  unsigned int temp = val;
+  do {
+    digits++;
+    temp /= 10;
+  } while (temp);
+
+  char buf[digits];
   int i = 0;
   do {
     buf[i++] = '0' + (val % 10);
@@ -135,4 +146,3 @@ void bprintf(const char* fmt, ...) {
   }
   va_end(args);
 }
- 
