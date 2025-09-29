@@ -5,7 +5,6 @@
 - Prevents overflow on wider platforms (e.g. 64-bit)
 - Still freestanding, still raw C
 
-
 # bprintf
 
 **bprintf** is a freestanding, libc-free formatted print engine for bootloaders, kernels, and bare-metal environments. It writes directly to VGA memory and supports basic format specifiers without relying on any standard library.
@@ -35,9 +34,9 @@ NOTE: "This is a custom bare-metal implementation of bprintf, not derived from a
 
 ## 📦 Size
 
-The compiled `bprintf` implementation typically occupies **~0.5 to 0.6 KB** of machine code when targeting a 32-bit freestanding x86 environment with no optimization. With `-Os` or `-O2`, it may shrink to **~0.4 KB**.
+The compiled `bprintf` implementation currently occupies **~2.3 KB** of machine code when targeting a 32-bit freestanding x86 environment with `-O2` optimization.
 
-This makes it ideal for bootloaders, microkernels, and minimal OS projects where every byte counts.
+This makes it lightweight enough for kernels and minimal OS projects, while still supporting multiple format specifiers and VGA output.
 
 ---
 
