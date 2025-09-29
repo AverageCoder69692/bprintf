@@ -1,34 +1,29 @@
-# UPDATES
-
-## Sept 2025
-- Refactored `print_hex()`, `print_bin()`, and `print_uint()` to use dynamic buffer sizing
-- Prevents overflow on wider platforms (e.g. 64-bit)
-- Still freestanding, still raw C
-
 # bprintf
 
-**bprintf** is a freestanding, libc-free formatted print engine for bootloaders, kernels, and bare-metal environments. It writes directly to VGA memory and supports basic format specifiers without relying on any standard library.
+**bprintf** is a freestanding, libc-free formatted print engine for bootloaders, kernels, and bare-metal environments. It writes directly to VGA memory (`0xB8000`) and supports essential format specifiers without relying on any standard library.
 
-Built entirely in C, `bprintf` is designed for low-level systems where `printf()` isn't available. It uses manual stack walking (`va_list`) and custom base conversion routines to render output directly to screen.
+Built entirely in raw C, `bprintf` is designed for low-level systems where `printf()` isn't available. It uses manual stack walking (`va_list`) and custom base conversion routines to render output directly to screen.
 
-NOTE: "This is a custom bare-metal implementation of bprintf, not derived from any existing code"
+NOTE: "This is a custom bare-metal implementation of bprintf, not derived from any existing codebase"
 
 ---
 
 ## ✨ Features
 
 - ✅ Direct VGA text output (`0xB8000`)
-- ✅ Supports format specifiers:
+- ✅ Format specifier support:
   - `%c` → character
   - `%s` → string
   - `%d` → signed decimal
   - `%u` → unsigned decimal
-  - `%x` → hexadecimal
-  - `%b` → binary
+  - `%x` → hexadecimal (with optional `0x` prefix)
+  - `%b` → binary (with optional `0b` prefix)
+  - `%p` → pointer (hex with `0x` prefix)
   - `%%` → literal percent sign
 - ✅ Graceful fallback for unknown specifiers (e.g., `%z` → prints `%z`)
-- ✅ Manual variadic argument parsing (`va_list`)
-- ✅ No dependencies, no libc, no OS
+- ✅ Manual variadic argument parsing via `va_list`
+- ✅ No dependencies, no libc, no OS—fully freestanding
+- ✅ Optional prefix control for hex and binary output
 
 ---
 
@@ -40,7 +35,9 @@ This makes it lightweight enough for kernels and minimal OS projects, while stil
 
 ---
 
-## 🧠 Use Case
+## 🧠 Example Usage
 
 ```c
-bprintf("Hello %s, value = %d, hex = %x\n", "world", 42, 42);
+bprintf("Hello %s, value = %d, hex = %x, ptr = %p, bin = %b\n",
+        "world", 42, 42, (void*)0xCAFEBABE, 42);
+
