@@ -33,9 +33,11 @@ void print_str(const char* str) {
   while (*str) putchar(*str++);
 }
 
-void print_hex(unsigned int val) {
-  putchar('0');
-  putchar('x');
+void print_hex(unsigned int val, bool prefix) {
+  if (prefix) {
+    putchar('0');
+    putchar('x');
+  }
   char hex[] = "0123456789ABCDEF";
   int hexbuf_size = sizeof(val) * 2;
   char buf[hexbuf_size];
@@ -48,9 +50,11 @@ void print_hex(unsigned int val) {
   while (i--) putchar(buf[i]);
 }
 
-void print_bin(unsigned int val) {
+void print_bin(unsigned int val, bool prefix) {
+  if (prefix) {
   putchar('0');
-  putchar('b');
+  putchar('b'); 
+  }
   int bits = sizeof(val) * 8;
   char buf[bits];
   int i = 0;
@@ -122,16 +126,21 @@ void bprintf(const char* fmt, ...) {
         }
         case 'x': {
           unsigned int x = va_arg(args, unsigned int);
-          print_hex(x);
+          print_hex(x, true);
           break;
         }
         case 'b': {
           unsigned int b = va_arg(args, unsigned int);
-          print_bin(b);
+          print_bin(b, true);
           break;
         }
         case '%': {
           putchar('%');
+          break;
+        }
+        case 'p': {
+          void* ptr = va_arg(args, void*);
+          print_hex((unsigned int)(uintptr_t)ptr, true);
           break;
         }
         default: {
@@ -146,3 +155,4 @@ void bprintf(const char* fmt, ...) {
   }
   va_end(args);
 }
+ 
