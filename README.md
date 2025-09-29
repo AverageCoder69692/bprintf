@@ -1,3 +1,11 @@
+# UPDATES
+
+## Sept 2025
+- Refactored `print_hex()`, `print_bin()`, and `print_uint()` to use dynamic buffer sizing
+- Prevents overflow on wider platforms (e.g. 64-bit)
+- Still freestanding, still raw C
+
+
 # bprintf
 
 **bprintf** is a freestanding, libc-free formatted print engine for bootloaders, kernels, and bare-metal environments. It writes directly to VGA memory and supports basic format specifiers without relying on any standard library.
