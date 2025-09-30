@@ -41,6 +41,11 @@ void print_hex(unsigned int val, bool prefix) {
     putchar('0');
     putchar('x');
   }
+  if (val == 0) {
+    putchar('0');
+    return;
+  }
+  
   char hex[] = "0123456789ABCDEF";
   int hexbuf_size = sizeof(val) * 2;
   char buf[hexbuf_size];
@@ -58,6 +63,11 @@ void print_bin(unsigned int val, bool prefix) {
   putchar('0');
   putchar('b'); 
   }
+  if (val == 0) {
+    putchar('0');
+    return;
+  }
+  
   int bits = sizeof(val) * 8;
   char buf[bits];
   int i = 0;
