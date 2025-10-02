@@ -35,9 +35,16 @@ This makes it lightweight enough for kernels and minimal OS projects, while stil
 
 ---
 
+## 🛠️ Bare-Metal Output Preview
+Here’s a real-time VGA output from bprintf running in a freestanding kernel environment:
+<img width="1920" height="1052" alt="Screenshot From 2025-10-02 20-56-06" src="https://github.com/user-attachments/assets/62c15f3e-2535-49bf-83ba-2857cbe406bc" />
+
+---
+
 ## 🧠 Example Usage
 
 ```c
 bprintf("Hello %s, value = %d, hex = %x, ptr = %p, bin = %b\n",
         "world", 42, 42, (void*)0xCAFEBABE, 42);
+
 
