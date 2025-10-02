@@ -77,7 +77,7 @@ void print_int(int val) {
 }
 
 // ---- Hex printing ----
-void print_hex(uintptr_t val, bool prefix) {
+void print_hex(uintptr_t val, u8 prefix) {
     if (prefix) {
         putchar('0');
         putchar('x');
@@ -98,7 +98,7 @@ void print_hex(uintptr_t val, bool prefix) {
 }
 
 // ---- Binary printing ----
-void print_bin(unsigned int val, bool prefix) {
+void print_bin(unsigned int val, u8 prefix) {
     if (prefix) {
         putchar('0');
         putchar('b');
