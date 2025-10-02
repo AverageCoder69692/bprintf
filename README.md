@@ -35,9 +35,11 @@ This makes it lightweight enough for kernels and minimal OS projects, while stil
 
 ---
 
-## 🛠️ Bare-Metal Output Preview
+
+🛠️ Bare-Metal Output Preview
 Here’s a real-time VGA output from bprintf running in a freestanding kernel environment:
-<img width="1920" height="1052" alt="Screenshot From 2025-10-02 20-56-06" src="https://github.com/user-attachments/assets/62c15f3e-2535-49bf-83ba-2857cbe406bc" />
+<img width="1761" height="865" alt="Screenshot From 2025-10-02 23-06-00" src="https://github.com/user-attachments/assets/87f226ac-5e5c-4ac5-acad-2b0373ec74e2" />
+
 
 ---
 
